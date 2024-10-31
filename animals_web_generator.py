@@ -23,15 +23,16 @@ def write_html(new_html):
 def get_animal_string(animals_data):
     animal_repository = ""
     for animal in animals_data:
+        animal_repository += '<li class="cards__item">'
         if "name" in animal:
-            animal_repository += f"Name: {animal["name"]}\n"
+            animal_repository += f"Name: {animal["name"]}<br/>"
         if "diet" in animal["characteristics"]:
-            animal_repository += f"Diet: {animal["characteristics"]["diet"]}\n"
+            animal_repository += f"Diet: {animal["characteristics"]["diet"]}<br/>"
         if "locations" in animal:
-            animal_repository += f"Location: {animal["locations"][0]}\n"
+            animal_repository += f"Location: {animal["locations"][0]}<br/>"
         if "type" in animal["characteristics"]:
-            animal_repository += f"Type: {animal["characteristics"]["type"]}\n"
-        animal_repository += "\n"
+            animal_repository += f"Type: {animal["characteristics"]["type"]}<br/>"
+        animal_repository += "</li>"
     return animal_repository
 
 
