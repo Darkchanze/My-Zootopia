@@ -36,12 +36,29 @@ def get_animal_string(animal_obj):
     output += "</ul></p>\n</li>"
     return output
 
+def print_list_of_skin_types(animals_data):
+    list_of_hairtypes = set()
+    for animal in animals_data:
+        if "skin_type" in animal["characteristics"]:
+            list_of_hairtypes.add(animal["characteristics"]["skin_type"])
+    for hairtype in list_of_hairtypes:
+        print(hairtype)
+
+def get_skin_type_user():
+    while True:
+        skin_type = input("Enter a skin type form above: ")
+        if skin_type == "Fur" or skin_type == "Scales" or skin_type == "Hair":
+            return skin_type
+
 
 def main():
     animals_data = load_json(ANIMALS_FILE)
     animal_string = ''
+    print_list_of_skin_types(animals_data)
+    skin_type = get_skin_type_user()
     for animal_obj in animals_data:
-        animal_string += get_animal_string(animal_obj)
+        if animal_obj["characteristics"]["skin_type"] == skin_type:
+            animal_string += get_animal_string(animal_obj)
     html = read_html(HTML_FILE)
     new_html = html.replace("__REPLACE_ANIMALS_INFO__", animal_string)
     write_html(new_html)
