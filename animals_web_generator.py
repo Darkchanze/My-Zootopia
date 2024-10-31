@@ -20,27 +20,30 @@ def write_html(new_html):
         handle.write(new_html)
 
 
-def get_animal_string(animals_data):
-    animal_repository = ""
-    for animal in animals_data:
-        animal_repository += '<li class="cards__item">'
-        if "name" in animal:
-            animal_repository += f' <div class="card__title">{animal["name"]}</div>\n<p class="card__text">\n'
-        if "diet" in animal["characteristics"]:
-            animal_repository += f"<strong>Diet:</strong> {animal["characteristics"]["diet"]}\n<br/>"
-        if "locations" in animal:
-            animal_repository += f"<strong>Location:</strong> {animal["locations"][0]}\n<br/>"
-        if "type" in animal["characteristics"]:
-            animal_repository += f"<strong>Type:</strong> {animal["characteristics"]["type"]}\n<br/>"
-        animal_repository += "</p>\n</li>"
-    return animal_repository
+def get_animal_string(animal_obj):
+    output = ""
+    output += '<li class="cards__item">'
+    if "name" in animal_obj:
+        output += f' <div class="card__title">{animal_obj["name"]}</div>\n<p class="card__text">\n'
+    if "diet" in animal_obj["characteristics"]:
+        output += f"<strong>Diet:</strong> {animal_obj["characteristics"]["diet"]}\n<br/>"
+    if "locations" in animal_obj:
+        output += f"<strong>Location:</strong> {animal_obj["locations"][0]}\n<br/>"
+    if "type" in animal_obj["characteristics"]:
+        output += f"<strong>Type:</strong> {animal_obj["characteristics"]["type"]}\n<br/>"
+    if "type" in animal_obj["characteristics"]:
+        output += f"<strong>Life span:</strong> {animal_obj["characteristics"]["lifespan"]}\n<br/>"
+    output += "</p>\n</li>"
+    return output
 
 
 def main():
     animals_data = load_json(ANIMALS_FILE)
-    animals_string = get_animal_string(animals_data)
+    animal_string = ''
+    for animal_obj in animals_data:
+        animal_string += get_animal_string(animal_obj)
     html = read_html(HTML_FILE)
-    new_html = html.replace("__REPLACE_ANIMALS_INFO__", animals_string)
+    new_html = html.replace("__REPLACE_ANIMALS_INFO__", animal_string)
     write_html(new_html)
 
 
