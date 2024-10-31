@@ -25,14 +25,14 @@ def get_animal_string(animals_data):
     for animal in animals_data:
         animal_repository += '<li class="cards__item">'
         if "name" in animal:
-            animal_repository += f"Name: {animal["name"]}<br/>"
+            animal_repository += f' <div class="card__title">{animal["name"]}</div>\n<p class="card__text">\n'
         if "diet" in animal["characteristics"]:
-            animal_repository += f"Diet: {animal["characteristics"]["diet"]}<br/>"
+            animal_repository += f"<strong>Diet:</strong> {animal["characteristics"]["diet"]}\n<br/>"
         if "locations" in animal:
-            animal_repository += f"Location: {animal["locations"][0]}<br/>"
+            animal_repository += f"<strong>Location:</strong> {animal["locations"][0]}\n<br/>"
         if "type" in animal["characteristics"]:
-            animal_repository += f"Type: {animal["characteristics"]["type"]}<br/>"
-        animal_repository += "</li>"
+            animal_repository += f"<strong>Type:</strong> {animal["characteristics"]["type"]}\n<br/>"
+        animal_repository += "</p>\n</li>"
     return animal_repository
 
 
