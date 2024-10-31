@@ -24,16 +24,16 @@ def get_animal_string(animal_obj):
     output = ""
     output += '<li class="cards__item">'
     if "name" in animal_obj:
-        output += f' <div class="card__title">{animal_obj["name"]}</div>\n<p class="card__text">\n'
+        output += f' <div class="card__title">{animal_obj["name"]}</div>\n<p class="card__text"><ul class="no_dots">\n'
     if "diet" in animal_obj["characteristics"]:
-        output += f"<strong>Diet:</strong> {animal_obj["characteristics"]["diet"]}\n<br/>"
+        output += f"<li><strong>Diet:</strong> {animal_obj["characteristics"]["diet"]}</li>\n"
     if "locations" in animal_obj:
-        output += f"<strong>Location:</strong> {animal_obj["locations"][0]}\n<br/>"
+        output += f"<li><strong>Location:</strong> {animal_obj["locations"][0]}</li>\n"
     if "type" in animal_obj["characteristics"]:
-        output += f"<strong>Type:</strong> {animal_obj["characteristics"]["type"]}\n<br/>"
+        output += f"<li><strong>Type:</strong> {animal_obj["characteristics"]["type"]}</li>\n"
     if "type" in animal_obj["characteristics"]:
-        output += f"<strong>Life span:</strong> {animal_obj["characteristics"]["lifespan"]}\n<br/>"
-    output += "</p>\n</li>"
+        output += f"<li><strong>Life span:</strong> {animal_obj["characteristics"]["lifespan"]}</li>\n"
+    output += "</ul></p>\n</li>"
     return output
 
 
