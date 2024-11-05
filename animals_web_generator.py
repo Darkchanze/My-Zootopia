@@ -6,21 +6,25 @@ HTML_FILE = "animals_template.html"
 
 
 def load_json(FILE):
+    """Load a json file."""
     with open(FILE, "r") as handle:
         return json.load(handle)
 
 
 def read_html(FILE):
+    """Read the html file."""
     with open(FILE, "r") as handle:
         return handle.read()
 
 
 def write_html(new_html):
+    """Write html file with new code."""
     with open("animals.html","w") as handle:
         handle.write(new_html)
 
 
 def get_animal_string(animal_obj):
+    """Generate the new part of the html file and return it. Output contains the new html."""
     output = ""
     output += '<li class="cards__item">'
     if "name" in animal_obj:
@@ -37,6 +41,7 @@ def get_animal_string(animal_obj):
     return output
 
 def print_list_of_skin_types(animals_data):
+    """Print hair types available for the user_input."""
     list_of_hairtypes = set()
     for animal in animals_data:
         if "skin_type" in animal["characteristics"]:
@@ -45,6 +50,7 @@ def print_list_of_skin_types(animals_data):
         print(hairtype)
 
 def get_skin_type_user():
+    """Get the skin type from user input. Try to get input as long as it is correct."""
     while True:
         skin_type = input("Enter a skin type form above: ")
         if skin_type == "Fur" or skin_type == "Scales" or skin_type == "Hair":
